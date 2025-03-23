@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import CircleButton from './CircleButton';
 import RectButton from './RectButton';
@@ -7,8 +6,9 @@ import { Play, Pause, RefreshCcw, SkipForward } from 'lucide-react';
 const PomodoroTimer: React.FC = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
+  const [echoDelay, setEchoDelay] = useState('');
+  const [echoCount, setEchoCount] = useState('');
   
-  // Placeholder functions for the buttons
   const handleStart = () => {
     setIsRunning(true);
     console.log('Start timer');
@@ -29,11 +29,11 @@ const PomodoroTimer: React.FC = () => {
   };
   
   const handleEchoDelay = () => {
-    console.log('Echo delay');
+    console.log('Echo delay:', echoDelay);
   };
   
   const handleEchoCount = () => {
-    console.log('Echo count');
+    console.log('Echo count:', echoCount);
   };
 
   return (
@@ -80,12 +80,20 @@ const PomodoroTimer: React.FC = () => {
         
         <div className="flex justify-center space-x-8 animate-slide-up delay-150">
           <RectButton 
-            label="Echo Delay" 
-            onClick={handleEchoDelay} 
+            label="Set Echo Delay" 
+            onClick={handleEchoDelay}
+            withInput={true}
+            inputValue={echoDelay}
+            onInputChange={setEchoDelay}
+            inputPlaceholder="Delay (ms)"
           />
           <RectButton 
-            label="Echo Count" 
-            onClick={handleEchoCount} 
+            label="Set Echo Count" 
+            onClick={handleEchoCount}
+            withInput={true}
+            inputValue={echoCount}
+            onInputChange={setEchoCount}
+            inputPlaceholder="Count"
           />
         </div>
       </div>
